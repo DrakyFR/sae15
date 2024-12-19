@@ -1,6 +1,7 @@
 import markdown
 import requests
 import argparse
+import webbrowser
 
 parser = argparse.ArgumentParser()
 parser.add_argument("ID", help="Entrez l'ID d'un pokémon", type=int)
@@ -26,8 +27,7 @@ def pokemon(id):
     states["weight"]=statistique["weight"]
     nb=1
     for elt in statistique["types"]:
-        states["type "+str(nb)]=elt["type"]["name"]
-        nb=nb+1
+        states["type"]=elt["type"]["name"] #ça affiche que 1 des deux types si y'en a 2
     for elt in statistique["stats"]:
         if elt["stat"]["name"] == "hp":
             states["hp"]=elt["base_stat"]
@@ -51,11 +51,16 @@ def markdowne(pokemon):
     with open("mon_fichier.md", "w") as mon_pokedex:
         #Il faut créer un fichier marldown "mon_fichier"
         mon_pokedex.write("# Presentation de "+str(pokemon["nom"]))
-        mon_pokedex.write("\n ### - Point d'attaque : "+str(pokemon["attack"]))
-        mon_pokedex.write("\n ### - Point de defense : "+str(pokemon["defense"]))
-        mon_pokedex.write("\n ### - Point d'attaque special : "+str(pokemon["special-attack"]))
-        mon_pokedex.write("\n ### - Point de defense special : "+str(pokemon["special-defense"]))
-        mon_pokedex.write("\n ### - Point de vitesse : "+str(pokemon["speed"]))
+        mon_pokedex.write("\n### - Point de vitesse : "+str(pokemon["hp"]))
+        mon_pokedex.write("\n### - Point d'attaque : "+str(pokemon["attack"]))
+        mon_pokedex.write("\n### - Point de defense : "+str(pokemon["defense"]))
+        mon_pokedex.write("\n### - Point d'attaque special : "+str(pokemon["special-attack"]))
+        mon_pokedex.write("\n### - Point de defense special : "+str(pokemon["special-defense"]))
+        mon_pokedex.write("\n### - Point de vitesse : "+str(pokemon["speed"]))
+        mon_pokedex.write("\n### - Type : "+str(pokemon["type"]))
+        mon_pokedex.write("\n### - taille : "+str(pokemon["height"]))
+        mon_pokedex.write("\n### - Poids : "+str(pokemon["weight"]))
+        
         mon_pokedex.write("\n ![alt text]("+pokemon["image"]+")")
     with open("mon_fichier.md", "r", encoding="utf-8") as input_file:
         text = input_file.read()
@@ -63,9 +68,11 @@ def markdowne(pokemon):
     with open("some_file.html","w") as pokedex_html:
         pokedex_html.write(html)
         
-
-
+# Il faut créer les fichiers "mon_fichier.md" et "some_file.html"
 
 
 print(markdowne(pokemon(args.ID)))
-print(pokemon(25))
+print(pokemon(149))
+
+
+webbrowser.open("some_file.html")

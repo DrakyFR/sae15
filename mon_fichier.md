@@ -1,7 +1,11 @@
-# Presentation de mewtwo
- ### - Point d'attaque : 110
- ### - Point de defense : 90
- ### - Point d'attaque special : 154
- ### - Point de defense special : 90
- ### - Point de vitesse : 130
- ![alt text](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png)
+# Presentation de dragonite
+### - Point de vitesse : 91
+### - Point d'attaque : 134
+### - Point de defense : 95
+### - Point d'attaque special : 100
+### - Point de defense special : 100
+### - Point de vitesse : 80
+### - Type : flying
+### - taille : 22
+### - Poids : 2100
+ ![alt text](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png)
